@@ -5,6 +5,8 @@ from Stats import Stats
 
 pygame.init()
 
+clock = pygame.time.Clock()
+
 display = pygame.display.set_mode((800,600))
 pygame.display.set_caption('Bounce the ball')
 
@@ -28,11 +30,18 @@ while run:
         elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             if ball.collide_point(event.pos):
                 score += 1
+                ball.bounce()
                 bounce_sound.play()
+
+    if ball.collide_borders():
+        lives -= 1
                 
     display.fill((0,128,128))
     stats_font.show(score, lives)
+    ball.move()
     ball.show()
     pygame.display.update()
+
+    clock.tick(60)
 
 pygame.quit()
