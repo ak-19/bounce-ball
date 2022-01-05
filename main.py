@@ -11,6 +11,8 @@ clock = pygame.time.Clock()
 display = pygame.display.set_mode((800,600))
 pygame.display.set_caption('Bounce the ball')
 
+pygame.mixer.music.load('assets/spinning.mp3')
+pygame.mixer.music.play(loops=-1)
 bounce_sound = pygame.mixer.Sound('assets/bounce.wav')
 fail_sound = pygame.mixer.Sound('assets/fail.wav')
 
