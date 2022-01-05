@@ -38,6 +38,11 @@ while run:
                 score += 1
                 ball.bounce()
                 bounce_sound.play()
+        elif event.type == pygame.KEYDOWN and event.key == pygame.K_p and gameplay == False:
+            gameplay = True
+            score = 0
+            lives = 5
+            ball = Ball(display)
 
     if gameplay and ball.collide_borders():
         fail_sound.play()
