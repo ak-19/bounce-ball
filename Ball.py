@@ -2,12 +2,14 @@ import pygame
 
 from random import randint, choice
 
+from Screen import Screen
+
 class Ball:
     def __init__(self, display):
         self.display = display
         self.image = pygame.image.load('assets/ball.png')
         self.rect = self.image.get_rect()
-        self.rect.topleft = (randint(10, 750),100)
+        self.rect.topleft = (randint(10, Screen.WIDTH - 64),100)
         self.velocity = 1
         self.dx = choice([self.velocity, -self.velocity])
         self.dy = self.velocity
@@ -28,9 +30,9 @@ class Ball:
     def collide_borders(self):
         if self.rect.x < 0: self.dx = -self.dx
         if self.rect.y < 0: self.dy = -self.dy
-        if self.rect.x + 64 >= 800: self.dx = -self.dx
+        if self.rect.x + 64 >= Screen.WIDTH: self.dx = -self.dx
 
-        if self.rect.y + 64 >= 600: 
+        if self.rect.y + 64 >= Screen.HEIGHT: 
             self.dy = -self.dy
             return True
         
